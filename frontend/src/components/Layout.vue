@@ -3,10 +3,6 @@ import { onMounted } from 'vue';
 import { useAuthStore } from '../stores/auth.js';
 const authStore = useAuthStore();
 
-const handleLogout = () => {
-  console.log('logout')
-  authStore.handleLogout();
-};
 onMounted(async () => {
   try {
     const module = await import('../../public/assets/js/defaultmenu.js');
@@ -26,7 +22,7 @@ onMounted(async () => {
         <!-- Start::header-element -->
         <div class="header-element">
           <div class="horizontal-logo">
-            <a href="http://localhost:3000/crm-dashboard" class="header-logo">
+            <a href="http://localhost:3000" class="header-logo">
               <!--<img src="../../public/assets/images/brand-logos/desktop-logo.png" alt="logo" class="desktop-logo">
               <img src="../../public/assets/images/brand-logos/toggle-logo.png" alt="logo" class="toggle-logo">
               <img src="../../public/assets/images/brand-logos/desktop-dark.png" alt="logo" class="desktop-dark">
@@ -582,15 +578,13 @@ onMounted(async () => {
         <!--End Related Apps -->
 
         <!-- Fullscreen -->
-        <div class="header-element header-fullscreen py-[1rem] md:px-[0.65rem] px-2">
-          <!-- Start::header-link -->
+        <!--<div class="header-element header-fullscreen py-[1rem] md:px-[0.65rem] px-2">
           <a aria-label="anchor" onclick="openFullscreen();" href="javascript:void(0);"
             class="inline-flex flex-shrink-0 justify-center items-center gap-2  !rounded-full font-medium dark:hover:bg-black/20 dark:text-[#8c9097] dark:text-white/50 dark:hover:text-white dark:focus:ring-white/10 dark:focus:ring-offset-white/10">
             <i class="bx bx-fullscreen full-screen-open header-link-icon"></i>
             <i class="bx bx-exit-fullscreen full-screen-close header-link-icon hidden"></i>
           </a>
-          <!-- End::header-link -->
-        </div>
+        </div>-->
         <!-- End Full screen -->
 
         <!-- Header Profile -->
@@ -628,7 +622,7 @@ onMounted(async () => {
                     class="ti ti-wallet text-[1.125rem] me-2 opacity-[0.7]"></i>Bal: $7,12,950</a></li>
               <li><a class="w-full ti-dropdown-item !text-[0.8125rem] !p-[0.65rem] !gap-x-0 !inline-flex" href="chat.html"><i
                     class="ti ti-headset text-[1.125rem] me-2 opacity-[0.7]"></i>Support</a></li>
-              <li><a @click.prevent="handleLogout" class="w-full ti-dropdown-item !text-[0.8125rem] !p-[0.65rem] !gap-x-0 !inline-flex" href="sign-in-cover.html"><i
+              <li><a @click.prevent="authStore.handleLogout()" class="w-full ti-dropdown-item !text-[0.8125rem] !p-[0.65rem] !gap-x-0 !inline-flex" href="sign-in-cover.html"><i
                     class="ti ti-logout text-[1.125rem] me-2 opacity-[0.7]"></i>Log Out</a></li>
             </ul>
           </div>
@@ -636,13 +630,13 @@ onMounted(async () => {
         <!-- End Header Profile -->
 
         <!-- Switcher Icon -->
-        <div class="header-element md:px-[0.48rem]">
+        <!--<div class="header-element md:px-[0.48rem]">
           <button aria-label="button" type="button"
             class="hs-dropdown-toggle switcher-icon inline-flex flex-shrink-0 justify-center items-center gap-2  rounded-full font-medium  align-middle transition-all text-xs dark:text-[#8c9097] dark:text-white/50 dark:hover:text-white dark:focus:ring-white/10 dark:focus:ring-offset-white/10"
             data-hs-overlay="#hs-overlay-switcher">
             <i class="bx bx-cog header-link-icon animate-spin-slow"></i>
           </button>
-        </div>
+        </div>-->
         <!-- Switcher Icon -->
 
         <!-- End::header-element -->
@@ -654,7 +648,7 @@ onMounted(async () => {
 
   <!-- Start::main-sidebar-header -->
   <div class="main-sidebar-header">
-      <a href="http://localhost:3000/crm-dashboard" class="header-logo">
+      <a href="http://localhost:3000" class="header-logo">
           <img src="../../public/assets/images/brand-logos/desktop-logo.png" alt="logo" class="desktop-logo">
           <img src="../../public/assets/images/brand-logos/toggle-logo.png" alt="logo" class="toggle-logo">
           <img src="../../public/assets/images/brand-logos/desktop-dark.png" alt="logo" class="desktop-dark">
@@ -688,20 +682,36 @@ onMounted(async () => {
                   </a>
                   <ul class="slide-menu child1">
                       <li class="slide side-menu__label1">
-                          <a href="javascript:void(0)">Dashboards</a>
+                          <!--<a href="javascript:void(0)">Dashboards</a>-->
                       </li>
                       <li class="slide">
-                          <a href="http://localhost:3000/crm-dashboard" class="side-menu__item">CRM</a>
+                          <a href="http://localhost:3000/admi/crm-dashboard" class="side-menu__item">CRM</a>
                       </li>
                       <li class="slide">
-                          <a href="http://localhost:3000/my-page" class="side-menu__item">MyPage</a>
+                          <a href="http://localhost:3000/admi/my-page" class="side-menu__item">MyPage</a>
                       </li>
                       <li class="slide">
-                          <a href="http://localhost:3000/test" class="side-menu__item">blank</a>
+                          <a href="http://localhost:3000/admi/test" class="side-menu__item">blank</a>
                       </li>
                       <li class="slide">
-                          <a href="http://localhost:3000/settings" class="side-menu__item">Settings</a>
+                          <a href="http://localhost:3000/admi/settings" class="side-menu__item">Settings</a>
                       </li>
+                      <!--<li class="slide">
+                        <router-link
+                          to="/crm-dashboard"
+                          class="side-menu__item"
+                        >
+                          dash-board
+                        </router-link>
+                      </li>
+                      <li class="slide">
+                        <router-link
+                          to="/my-page"
+                          class="side-menu__item"
+                        >
+                          my-page
+                        </router-link>
+                      </li>-->
                   </ul>
               </li>
               <!-- End::slide -->

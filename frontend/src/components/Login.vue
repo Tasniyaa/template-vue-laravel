@@ -25,19 +25,14 @@
           <div class="xxl:col-span-4 xl:col-span-4 lg:col-span-4 md:col-span-6 sm:col-span-8 col-span-12">
             <div class="my-[2.5rem] flex justify-center">
               <a href="index.html">
-                  <img src="../assets/images/brand-logos/desktop-logo.png" alt="logo" class="desktop-logo">
-                  <img src="../assets/images/brand-logos/desktop-dark.png" alt="logo" class="desktop-dark">
+                  <img src="../../public/assets/images/brand-logos/desktop-logo.png" alt="logo" class="desktop-logo">
+                  <img src="../../public/assets/images/brand-logos/desktop-dark.png" alt="logo" class="desktop-dark">
               </a>
             </div>
             <div class="box">
               <div class="box-body !p-[3rem]">
                 <p class="h5 font-semibold mb-2 text-center">Sign In</p>
                 <p class="mb-4 text-[#8c9097] dark:text-white/50 opacity-[0.7] font-normal text-center">Welcome back !</p>
-                <div class="mb-4">
-                  <h6 class="font-semibold mb-2 text-center">Login Info</h6>
-                  <p class="mb-2 text-[#5488e2] dark:text-white/50 opacity-[0.7] font-normal text-center">Email: admin@gmail.com</p>
-                  <p class="mb-4 text-[#5488e2] dark:text-white/50 opacity-[0.7] font-normal text-center">password: 12345678</p>
-                </div>
                 <form @submit.prevent="authStore.handleLogin(form)">
                   <div class="mb-6">
                     <input

@@ -107,6 +107,7 @@ module.exports = {
         github:"rgb(var(--github))",
         google:"rgb(var(--google))",
         youtube:"rgb(var(--youtube))",
+        ash:""
       },
       gradientColorStops: {
         primary: 'rgb(var(--primary))',

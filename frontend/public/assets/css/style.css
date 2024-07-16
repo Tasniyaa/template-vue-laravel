@@ -38307,7 +38307,8 @@ h6 {
   background-image: url("./2-MY3UV6YH.jpg");
 }
 .bg-\[url\(\'\.\.\/images\/media\/landing\/banner\.jpg\'\)\] {
-  background-image: url("./banner-KQXS2LDL.jpg");
+  /*background-image: url("./banner-KQXS2LDL.jpg");*/
+  background-image: url("https://media.istockphoto.com/id/1390631668/photo/modern-abstract-purple-background.webp?b=1&s=170667a&w=0&k=20&c=lH_pK0gxnw81fcNwEUikPPA7EIhYsaC9_ybpIH-ugtI=");
 }
 .bg-\[url\(\'\.\.\/images\/media\/media-19\.jpg\'\)\] {
   background-image: url("./media-19-OSNB7Y46.jpg");
@@ -43906,7 +43907,8 @@ h6 {
   top: 0px;
   height: 37rem;
   width: 100%;
-  background-image: url("./banner-KQXS2LDL.jpg");
+  /*background-image: url("./banner-KQXS2LDL.jpg");*/
+  background-image: url("https://media.istockphoto.com/id/1390631668/photo/modern-abstract-purple-background.webp?b=1&s=170667a&w=0&k=20&c=lH_pK0gxnw81fcNwEUikPPA7EIhYsaC9_ybpIH-ugtI=");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -44193,7 +44195,8 @@ h6 {
 }
 @media (max-width: 420px) {
   [data-nav-layout=horizontal] .landing-body .landing-banner {
-    height: 37.5rem;
+    /*change*/
+    height: 10.5rem;
   }
   [data-nav-layout=horizontal] .landing-body .landing-banner .main-banner-container {
     padding: 1rem;

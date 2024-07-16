@@ -6,18 +6,29 @@ import Layout from "../components/Layout.vue";
 import DashboardCRM from "../components/page/DashboardCRM.vue";
 import Test from "../components/page/Test.vue";
 import Settings from "../components/settings/Settings.vue";
+import HomePage from "../components/HomePage.vue";
 
 const routes = [
   {
-    path: '/',
+    path: "/",
+    name: "HomePage",
+    component: HomePage,
+  },
+  {
+    path: "/home",
+    name: "Home",
+    component: Home,
+  },
+  {
+    path: '/admi',
     component: Layout,
     meta: { requiresAuth: true },
     children: [
-      {
-        path: '',
-        name: 'Home',
-        component: Home,
-      },
+      //{
+      //  path: '',
+      //  name: 'Home',
+      //  component: Home,
+      //},
       {
         path: 'my-page',
         name: 'MyPage',
@@ -97,10 +108,13 @@ router.beforeEach((to, from, next) => {
   const authStore = useAuthStore();
 
   if (to.matched.some(record => record.meta.requiresAuth)) {
-    if (!authStore.authUser) {
-      alert('Not authenticated. Redirecting to login.')
-      console.log('Not authenticated. Redirecting to login.');
-      next('/login'); 
+    //if (!authStore.authUser) {
+      if(authStore.authUser && authStore.user.role !== "super-admin") {
+        
+      alert('Not admin. Redirecting to login.')
+      alert(authStore.user.role)
+      console.log('Not admin. Redirecting to login.');
+      next('/'); 
     } else {
       next();
     }

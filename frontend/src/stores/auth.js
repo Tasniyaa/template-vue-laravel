@@ -25,31 +25,20 @@ export const useAuthStore = defineStore("auth", {
     },
     async handleLogin(data) {
       this.authErrors = [];
-            // Manually check the email and password
-      if (data.email === "admin@gmail.com" && data.password === "12345678") {
-        const adminUser = { email: "admin@gmail.com", name: "Admin" };
-        this.authUser = adminUser;
-        localStorage.setItem('authUser', JSON.stringify(adminUser));
-        this.router.push("/");
-        return;
-      }else{
-        this.authErrors = "not registered";
-        alert("error in login");
-      }
       await this.getToken();
 
-      //try {
-      //  await axios.post("/login", {
-      //    email: data.email,
-      //    password: data.password,
-      //  });
-      //  await this.getUser();
-      //  this.router.push("/crm-dashboard");
-      //} catch (error) {
-      //  if (error.response.status === 422) {
-      //    this.authErrors = error.response.data.errors;
-      //  }
-      //}
+      try {
+        await axios.post("/login", {
+          email: data.email,
+          password: data.password,
+        });
+        await this.getUser();
+        this.router.push("/");
+      } catch (error) {
+        if (error.response.status === 422) {
+          this.authErrors = error.response.data.errors;
+        }
+      }
     },
     async handleRegister(data) {
       this.authErrors = [];
@@ -62,7 +51,7 @@ export const useAuthStore = defineStore("auth", {
           password_confirmation: data.password_confirmation,
         });
         await this.getUser();  // Fetch the user and update state
-        this.router.push("/login"); // Redirect to home after registration
+        this.router.push("/"); // Redirect to home after registration
       } catch (error) {
         if (error.response.status === 422) {
           this.authErrors = error.response.data.errors;
@@ -70,11 +59,13 @@ export const useAuthStore = defineStore("auth", {
       }
     },
     async handleLogout() {
-      alert('logout')
-      //await axios.post("/logout");
+      await axios.post("/logout");
       this.authUser = null;
       localStorage.removeItem('authUser');
-      this.router.push("/login");
+      alert('logout')
+      //this.router.push("http://localhost:3000/");
+      this.router.push("/");
+      //this.router.push("/login");
     },
     async handleForgotPassword(email) {
       this.authErrors = [];
@@ -104,11 +95,12 @@ export const useAuthStore = defineStore("auth", {
   },
 });
 
+//import { defineStore } from "pinia";
 //import axios from "axios";
 
 //export const useAuthStore = defineStore("auth", {
 //  state: () => ({
-//    authUser: JSON.parse(localStorage.getItem('authUser')) || null,
+//    authUser: null,
 //    authErrors: [],
 //    authStatus: null,
 //  }),
@@ -116,7 +108,6 @@ export const useAuthStore = defineStore("auth", {
 //    user: (state) => state.authUser,
 //    errors: (state) => state.authErrors,
 //    status: (state) => state.authStatus,
-//    isAuthenticated: (state) => !!state.authUser, // Add a getter to check if the user is authenticated
 //  },
 //  actions: {
 //    async getToken() {
@@ -124,8 +115,8 @@ export const useAuthStore = defineStore("auth", {
 //    },
 //    async getUser() {
 //      await this.getToken();
-//      const { data } = await axios.get("/api/user");
-//      this.authUser = data;
+//      const data = await axios.get("/api/user");
+//      this.authUser = data.data;
 //      localStorage.setItem('authUser', JSON.stringify(data));
 //    },
 //    async handleLogin(data) {
@@ -137,11 +128,10 @@ export const useAuthStore = defineStore("auth", {
 //          email: data.email,
 //          password: data.password,
 //        });
-//        await this.getUser();  // Fetch the user and update state
-//        this.router.push("/crm-dashboard"); // Redirect to home after login
+//        //localStorage.setItem('authUser', JSON.stringify(data));
+//        this.router.push("/");
 //      } catch (error) {
 //        if (error.response.status === 422) {
-//          alert("err")
 //          this.authErrors = error.response.data.errors;
 //        }
 //      }
@@ -156,8 +146,7 @@ export const useAuthStore = defineStore("auth", {
 //          password: data.password,
 //          password_confirmation: data.password_confirmation,
 //        });
-//        await this.getUser();  // Fetch the user and update state
-//        this.router.push("/"); // Redirect to home after registration
+//        this.router.push("/");
 //      } catch (error) {
 //        if (error.response.status === 422) {
 //          this.authErrors = error.response.data.errors;
@@ -167,7 +156,9 @@ export const useAuthStore = defineStore("auth", {
 //    async handleLogout() {
 //      await axios.post("/logout");
 //      this.authUser = null;
+//      // Clear the login data from localStorage
 //      localStorage.removeItem('authUser');
+//      alert('logout')
 //      this.router.push("/login");
 //    },
 //    async handleForgotPassword(email) {
