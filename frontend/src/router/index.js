@@ -7,18 +7,32 @@ import DashboardCRM from "../components/page/DashboardCRM.vue";
 import Test from "../components/page/Test.vue";
 import Settings from "../components/settings/Settings.vue";
 import HomePage from "../components/HomePage.vue";
+import LayoutTow from "../components/LayoutTow.vue";
 
 const routes = [
+  //{
+  //  path: "/",
+  //  name: "HomePage",
+  //  component: HomePage,
+  //},
   {
     path: "/",
-    name: "HomePage",
-    component: HomePage,
+    name: "LayoutTow",
+    component: LayoutTow,
+    children: [
+      {
+        path: "/",
+        name: "HomePage",
+        component: HomePage,
+      },
+      {
+        path: "/home",
+        name: "Home",
+        component: Home,
+      },
+    ]
   },
-  {
-    path: "/home",
-    name: "Home",
-    component: Home,
-  },
+
   {
     path: '/admi',
     component: Layout,
